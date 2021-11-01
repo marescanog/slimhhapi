@@ -64,14 +64,34 @@ class UserController
             "confirm_password"=>v::notEmpty(),
         ]);
 
+        
+        if($this->validator->failed())
+        {
+            $responseMessage = $this->validator->errors;
+            return $this->customResponse->is400Response($response,$responseMessage);
+        }
+
         //register($first_name, $last_name, $phone_number, $password)
-        $this->user->register(
+        $isSuccess = $this->user->register(
             CustomRequestHandler::getParam($request,"first_name"),
             CustomRequestHandler::getParam($request,"last_name"),
             CustomRequestHandler::getParam($request,"phone_number"),
             CustomRequestHandler::getParam($request,"password")
         );
 
+        if($isSuccess){
+            $responseMessage =  array(
+                "success"=>true,
+                "data"=>$isSuccess,
+                "message"=>"Registration Succesfull",
+            );
+        } else {
+            $responseMessage =  array(
+                "success"=>false,
+                "data"=>$isSuccess,
+                "message"=>"something went wrong",
+            );
+        }
         $this->customResponse->is200Response($response, $responseMessage);
     }
 

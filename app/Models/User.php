@@ -78,15 +78,15 @@ class User
             
             // Prepare statement
             $stmt =  $conn->prepare($query);
-            
+            $utypeID = 1;
             // Only fetch if prepare succeeded
             if ($stmt !== false) {
-                $stmt->bindparam(':utypeid', 1);
+                $stmt->bindparam(':utypeid', $utypeID);
                 $stmt->bindparam(':fname', $first_name);
                 $stmt->bindparam(':lname', $last_name);
                 $stmt->bindparam(':phone', $phone_number);
                 $stmt->bindparam(':pass', $hashed_pass);
-                $stmt->execute();
+                $result = $stmt->execute();
 
             }
             $stmt=null;
@@ -128,7 +128,7 @@ class User
     }
 
 
-    
+
     // @name    Gets a user from database by ID
     // @params  id
     // @returns true on a successful add object or PDOException/false if error

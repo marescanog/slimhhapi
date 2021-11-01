@@ -27,11 +27,11 @@ class DB {
             // $conn = new PDO($dsn, $user, $pass);
 
             // PRODUCTION DATABASE CONNECTION
-            $conn = new \PDO("mysql:host=".$_ENV['DB_HOST'].";dbname=".$_ENV['DB_NAME'].";charset=utf8mb4", $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+            // $conn = new \PDO("mysql:host=".$_ENV['DB_HOST'].";dbname=".$_ENV['DB_NAME'].";charset=utf8mb4", $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
 
             // DEVELOPMENT DATABASE CONNECTION
-            // require_once __DIR__ . '/hidden.php';
-            // $conn = new \PDO($conn_dsn, $conn_user, $conn_pass);
+            require_once __DIR__ . '/hidden.php';
+            $conn = new \PDO($conn_dsn, $conn_user, $conn_pass);
 
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
