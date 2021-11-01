@@ -82,6 +82,38 @@ class GuestEntryController
     }
     
 
+    public function is_in_db($phone_number){
+        try{
+
+            $db = new DB();
+            $conn = $db->connect();
+
+            // CREATE query
+            $query = "SELECT 
+                        hh.phone_no as phone_no 
+                    FROM 
+                        ".$this->table." hh WHERE phone_no = :phone";
+            
+            // Prepare statement
+            $stmt =  $conn->prepare($query);
+            
+            // Only fetch if prepare succeeded
+            if ($stmt !== false) {
+                $stmt->bindparam(':phone', $phone_number);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            $stmt=null;
+            $db=null;
+
+            return $result == false ? false : true;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
     public function getSingleGuest(Request $request,Response $response,$id)
     {
 

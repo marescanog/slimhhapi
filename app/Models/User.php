@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Db\DB;
+use PDO;
+use PDOException;
 
 class User 
 {
@@ -36,10 +38,11 @@ class User
             $conn = $db->connect();
 
             // CREATE query
-            $query = "SELECT 
-                        hh.phone_no as phone_no 
-                    FROM 
-                        ".$this->table." hh WHERE phone_no = :phone";
+        //     $query = "SELECT 
+        //     phone_no as phone_no 
+        // FROM 
+        //     hh_user WHERE phone_no = :phone";
+            $query = "SELECT * FROM `hh_user` WHERE phone_no = :phone";
             
             // Prepare statement
             $stmt =  $conn->prepare($query);
@@ -48,14 +51,14 @@ class User
             if ($stmt !== false) {
                 $stmt->bindparam(':phone', $phone_number);
                 $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                $result = $stmt->fetch(\PDO::FETCH_ASSOC);
             }
             $stmt=null;
             $db=null;
 
             return $result == false ? false : true;
 
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
         }

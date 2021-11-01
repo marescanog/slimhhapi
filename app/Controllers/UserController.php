@@ -46,8 +46,8 @@ class UserController
         $result = $this->user->is_in_db(CustomRequestHandler::getParam($request,"number"));
 
         $responseMessage =  array(
-                                "success"=>$result,
-                                "data"=>"NOT_FOUND",
+                                "success"=>true,
+                                "data"=>$result,
                                 "message"=>"Data Succesfully Retreived",
                             );
 
