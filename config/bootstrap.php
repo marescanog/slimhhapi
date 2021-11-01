@@ -9,7 +9,7 @@ $app = new App($settings);
 
 $container = $app->getContainer();
 
-require_once __DIR__. '/errHandler.php';
+// require_once __DIR__. '/errHandler.php';
 
 $routeContainers = require_once __DIR__. '/routecontainers.php';
 
