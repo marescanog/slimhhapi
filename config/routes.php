@@ -1,5 +1,8 @@
 <?php
 
+
+// Sample Routes
+
 $app->get("/","GuestEntryController:loadApp");
 
 $app->get("/create-guest","GuestEntryController:createGuest");

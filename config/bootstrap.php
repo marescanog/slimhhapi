@@ -18,6 +18,8 @@ $routeContainers($container);
 
 require_once __DIR__. '/routes.php';
 
+require_once __DIR__. '/routes/user-routes.php';
+
 $middleware = require_once __DIR__."/middleware.php";
 
 $middleware($app);
