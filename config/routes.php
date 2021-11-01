@@ -1,5 +1,7 @@
 <?php
 
+$app->get("/","GuestEntryController:loadApp");
+
 $app->get("/create-guest","GuestEntryController:createGuest");
 
 $app->get("/view-guests" ,"GuestEntryController:viewGuests");

@@ -69,12 +69,18 @@ class GuestEntryController
 
     }
 
+    public function loadApp(Request $request,Response $response)
+    {
+        $responseMessage = "Api for the homehero app";
+        $this->customResponse->is200Response($response, $responseMessage);
+    }
+
     public function viewGuests(Request $request,Response $response)
     {
         $responseMessage = "View guest works";
         $this->customResponse->is200Response($response, $responseMessage);
     }
-
+    
 
     public function getSingleGuest(Request $request,Response $response,$id)
     {
