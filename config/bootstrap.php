@@ -18,7 +18,7 @@ $routeContainers($container);
 
 require_once __DIR__. '/routes.php';
 
-require_once __DIR__."/database.php";
+// require_once __DIR__."/database.php";
 
 $middleware = require_once __DIR__."/middleware.php";
 
