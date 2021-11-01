@@ -56,7 +56,22 @@ class UserController
 
     public function register_user(Request $request,Response $response)
     {
-        $responseMessage = "Register User works";
+        $this->validator->validate($request,[
+            "first_name"=>v::notEmpty(),
+            "last_name"=>v::notEmpty(),
+            "phone_number"=>v::notEmpty(),
+            "password"=>v::notEmpty(),
+            "confirm_password"=>v::notEmpty(),
+        ]);
+
+        //register($first_name, $last_name, $phone_number, $password)
+        $this->user->register(
+            CustomRequestHandler::getParam($request,"first_name"),
+            CustomRequestHandler::getParam($request,"last_name"),
+            CustomRequestHandler::getParam($request,"phone_number"),
+            CustomRequestHandler::getParam($request,"password")
+        );
+
         $this->customResponse->is200Response($response, $responseMessage);
     }
 
