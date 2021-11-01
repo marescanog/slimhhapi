@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
 use Respect\Validation\Validator as v;
 use App\Validation\Validator;
-use App\db\DB;
+use App\Db\DB;
 
 
 class GuestEntryController
