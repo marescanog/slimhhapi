@@ -38,11 +38,7 @@ class User
             $conn = $db->connect();
 
             // CREATE query
-        //     $query = "SELECT 
-        //     phone_no as phone_no 
-        // FROM 
-        //     hh_user WHERE phone_no = :phone";
-            $query = "SELECT * FROM `hh_user` WHERE phone_no = :phone";
+            $query = "SELECT * FROM ".$this->table." WHERE phone_no = :phone";
             
             // Prepare statement
             $stmt =  $conn->prepare($query);
@@ -59,9 +55,85 @@ class User
             return $result == false ? false : true;
 
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-            return false;
+
+            return $e->getMessage();
         }
+    }
+
+    // @name    Adds a user to the database
+    // @params  phone number, first name, last name
+    // @returns true on a successful add or PDOException/false if error
+    public function register($first_name, $last_name, $phone_number, $password){
+
+        // Create Password Hash
+        $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+
+            // CREATE query
+            $query = "INSERT INTO hh_user(user_type_id, first_name, last_name, phone_no, password) 
+                        values(:utypeid,:fname,:lname,:phone,:pass)";
+            
+            // Prepare statement
+            $stmt =  $conn->prepare($query);
+            
+            // Only fetch if prepare succeeded
+            if ($stmt !== false) {
+                $stmt->bindparam(':utypeid', 1);
+                $stmt->bindparam(':fname', $first_name);
+                $stmt->bindparam(':lname', $last_name);
+                $stmt->bindparam(':phone', $phone_number);
+                $stmt->bindparam(':pass', $hashed_pass);
+                $stmt->execute();
+
+            }
+            $stmt=null;
+            $db=null;
+
+            return $result == false ? false : true;
+
+        } catch (\PDOException $e) {
+
+            return $e->getMessage();
+        }
+    }
+
+
+
+    // @name    Connects a user with homeowner attributes
+    // @params  id
+    // @returns true on a successful add or PDOException/false if error
+    private function createHomeowner($phone){
+        return $result == false ? false : true;
+    }
+
+
+
+    // @name    Delete user by ID
+    // @params  id
+    // @returns true on a successful add or PDOException/false if error
+    public function delteUserByID($phone){
+        return $result == false ? false : true;
+    }
+
+
+
+    // @name    Gets a user from database by phone number
+    // @params  id
+    // @returns true on a successful add or PDOException/false if error
+    public function getUserByPhone($phone){
+        return $result == false ? false : true;
+    }
+
+
+    
+    // @name    Gets a user from database by ID
+    // @params  id
+    // @returns true on a successful add object or PDOException/false if error
+    public function getUserByID($id){
+        return $result == false ? false : true;
     }
 
 }
