@@ -57,7 +57,7 @@ class UserController
     public function register_user(Request $request,Response $response)
     {
         $this->validator->validate($request,[
-            "first_name"=>v::notEmpty(),
+            "first_name_yeah"=>v::notEmpty(),
             "last_name"=>v::notEmpty(),
             "phone_number"=>v::notEmpty(),
             "password"=>v::notEmpty(),
@@ -73,7 +73,7 @@ class UserController
 
         //register($first_name, $last_name, $phone_number, $password)
         $isSuccess = $this->user->register(
-            CustomRequestHandler::getParam($request,"first_name"),
+            CustomRequestHandler::getParam($request,"first_name_yeah"),
             CustomRequestHandler::getParam($request,"last_name"),
             CustomRequestHandler::getParam($request,"phone_number"),
             CustomRequestHandler::getParam($request,"password")
