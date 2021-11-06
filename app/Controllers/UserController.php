@@ -95,4 +95,16 @@ class UserController
         $this->customResponse->is200Response($response, $responseMessage);
     }
 
+    public function get_all(Request $request,Response $response)
+    {
+
+        $responseMessage =  array(
+            "success"=>true,
+            "data"=>$isSuccess,
+            "message"=>"Fetch Succesful",
+        );
+
+        $this->customResponse->is200Response($response, $responseMessage);
+    }
+
 }
