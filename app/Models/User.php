@@ -100,10 +100,7 @@ class User
         }
     }
 
-    public function test($first_name, $last_name, $phone_number, $password){
-
-        // Create Password Hash
-        $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+    public function test(){
 
         try{
             $db = new DB();
