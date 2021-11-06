@@ -17,6 +17,11 @@ $routeContainers($container);
 
 require_once __DIR__. '/routes/user-routes.php';
 
+$app->get('/', function (Request $request, Response $response, array $args) {
+    $response->getBody()->write("HomeHero Api");
+    return $response;
+});
+
 $middleware = require_once __DIR__."/middleware.php";
 
 $middleware($app);
