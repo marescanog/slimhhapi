@@ -4,16 +4,18 @@ namespace  App\Db;
 
 use PDO;
 use PDOException;
-use Dotenv\Dotenv;
+
+// // Comment out if pushing to production, otherwise uncomment when in development
+// use Dotenv\Dotenv;
 
 class DB {
     // This is the Database connection class which can be called to start a PDO connection
     public function connect(){
         
-        // Comment out if pushing to production, otherwise uncomment when in development
-        require_once __DIR__ . '/../../vendor/autoload.php';
-        $dotenv = Dotenv::createImmutable(__DIR__."\\..\\..\\");
-        $dotenv->load();
+        // // Comment out if pushing to production, otherwise uncomment when in development
+        // require_once __DIR__ . '/../../vendor/autoload.php';
+        // $dotenv = Dotenv::createImmutable(__DIR__."\\..\\..\\");
+        // $dotenv->load();
 
 
         try{
