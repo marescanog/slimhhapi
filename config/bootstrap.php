@@ -1,4 +1,6 @@
 <?php
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 
 require_once __DIR__. "/../vendor/autoload.php";
