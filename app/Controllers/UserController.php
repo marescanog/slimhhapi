@@ -98,7 +98,7 @@ class UserController
     public function get_all(Request $request,Response $response)
     {
 
-        $isSuccess = $this->user->getAll();
+        $isSuccess = $this->user->test();
 
         if($isSuccess){
             $responseMessage =  array(

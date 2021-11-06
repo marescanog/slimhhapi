@@ -100,6 +100,19 @@ class User
         }
     }
 
+    public function test($first_name, $last_name, $phone_number, $password){
+
+        // Create Password Hash
+        $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+        }catch (\PDOException $e) {
+
+            return $e->getMessage();
+        }
+    }
 
     // @name    Fetches All users from the database
     // @params  none
