@@ -101,6 +101,36 @@ class User
     }
 
 
+    // @name    Fetches All users from the database
+    // @params  none
+    // @returns data on a successful add or PDOException/false if error
+    public function getAll(){
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+
+            // CREATE query
+            $sql = "SELECT * FROM hh_user";
+
+            // Prepare statement
+            $stmt = $conn->query($sql);
+            // Only fetch if prepare succeeded
+            if ($stmt !== false) {
+                $result = $stmt->fetchAll();
+            }
+            $stmt=null;
+            $db=null;
+
+            
+            return $result == false ? false : $result;
+
+        } catch (\PDOException $e) {
+
+            return $e->getMessage();
+        }
+
+    }
+
 
     // @name    Connects a user with homeowner attributes
     // @params  id
