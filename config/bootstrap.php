@@ -1,6 +1,4 @@
 <?php
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 
 require_once __DIR__. "/../vendor/autoload.php";
@@ -17,12 +15,10 @@ $routeContainers = require_once __DIR__. '/routecontainers.php';
 
 $routeContainers($container);
 
-require_once __DIR__. '/routes/user-routes.php';
 
-$app->get('/', function (Request $request, Response $response, array $args) {
-    $response->getBody()->write("HomeHero Api");
-    return $response;
-});
+require_once __DIR__. '/routes.php';
+
+require_once __DIR__. '/routes/user-routes.php';
 
 $middleware = require_once __DIR__."/middleware.php";
 

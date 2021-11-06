@@ -57,7 +57,7 @@ class UserController
     public function register_user(Request $request,Response $response)
     {
         $this->validator->validate($request,[
-            "first_name_yeah"=>v::notEmpty(),
+            "first_name"=>v::notEmpty(),
             "last_name"=>v::notEmpty(),
             "phone_number"=>v::notEmpty(),
             "password"=>v::notEmpty(),
@@ -73,7 +73,7 @@ class UserController
 
         //register($first_name, $last_name, $phone_number, $password)
         $isSuccess = $this->user->register(
-            CustomRequestHandler::getParam($request,"first_name_yeah"),
+            CustomRequestHandler::getParam($request,"first_name"),
             CustomRequestHandler::getParam($request,"last_name"),
             CustomRequestHandler::getParam($request,"phone_number"),
             CustomRequestHandler::getParam($request,"password")
@@ -92,28 +92,6 @@ class UserController
                 "message"=>"something went wrong",
             );
         }
-        $this->customResponse->is200Response($response, $responseMessage);
-    }
-
-    public function get_all(Request $request,Response $response)
-    {
-
-        $isSuccess = $this->user->test();
-
-        if($isSuccess){
-            $responseMessage =  array(
-                "success"=>true,
-                "data"=>$isSuccess,
-                "message"=>"Fetch Successful",
-            );
-        } else {
-            $responseMessage =  array(
-                "success"=>false,
-                "data"=>$isSuccess,
-                "message"=>"something went wrong",
-            );
-        }
-
         $this->customResponse->is200Response($response, $responseMessage);
     }
 
