@@ -4,7 +4,7 @@ namespace  App\Db;
 
 use PDO;
 use PDOException;
-use Dotenv\Dotenv;
+// use Dotenv\Dotenv;
 
 class DB {
     // This is the Database connection class which can be called to start a PDO connection
