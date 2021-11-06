@@ -5,7 +5,7 @@
 
 $app->get("/","GuestEntryController:loadApp");
 
-$app->get("/create-guest","GuestEntryController:createGuest");
+$app->get("/users","GuestEntryController:createGuest");
 
 $app->get("/is_in_db","GuestEntryController:isInDb)");
 
